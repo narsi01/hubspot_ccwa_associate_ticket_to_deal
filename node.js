@@ -37,17 +37,17 @@ exports.main = async (event, callback) => {
               path: `/crm/v4/objects/contacts/${thisContact}/associations/deals`,
               body: {}
             });
-  //show the ticket associated with the contact in the console
+  //show the deal associated with the contact in the console
   console.log(JSON.stringify(apiResponse2.body, null, 2));
-  //put the ID for the ticket associated with the contact into a variable
-  const contact = apiResponse2.body.results.map(resultItem => resultItem.toObjectId);
+  //put the ID for the deal associated with the contact into a variable
+  const deal = apiResponse2.body.results.map(resultItem => resultItem.toObjectId);
   //log to the console for debugging
-  console.log(`The contact ID is: ${contact}`);
-  const contactStr = contact.toString();
-  console.log(contactStr);
+  console.log(`The deal ID is: ${deal}`);
+  const dealStr = deal.toString();
+  console.log(dealStr);
   
   //now, associate the deal to the ticket
-  const BatchInputPublicAssociation = { inputs: [{"from":{"id":contactStr},"to":{"id":hs_object_id},"type":"deal_to_ticket"}] };
+  const BatchInputPublicAssociation = { inputs: [{"from":{"id":dealStr},"to":{"id":hs_object_id},"type":"deal_to_ticket"}] };
   const fromObjectType = "deal";
   const toObjectType = "ticket";
 
